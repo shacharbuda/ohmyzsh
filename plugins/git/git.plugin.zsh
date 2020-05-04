@@ -174,6 +174,7 @@ compdef _git ggpush=git-checkout
 
 alias ggsup='git branch --set-upstream-to=origin/$(git_current_branch)'
 alias gpsup='git push --set-upstream origin $(git_current_branch)'
+alias gp='git push || gpsup'
 
 alias ghh='git help'
 
@@ -211,7 +212,6 @@ alias gmtvim='git mergetool --no-prompt --tool=vimdiff'
 alias gmum='git merge upstream/master'
 alias gma='git merge --abort'
 
-alias gp='git push'
 alias gpd='git push --dry-run'
 alias gpf='git push --force-with-lease'
 alias gpf!='git push --force'
