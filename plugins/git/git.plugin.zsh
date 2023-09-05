@@ -129,9 +129,9 @@ alias ggsup='git branch --set-upstream-to=origin/$(git_current_branch)'
 alias gbg='LANG=C git branch -vv | grep ": gone\]"'
 alias gco='git checkout'
 alias gcor='git checkout --recurse-submodules'
-alias gcb='git checkout -b'
-alias gcd='git checkout $(git_develop_branch)'
-alias gcm='git checkout $(git_main_branch)'
+alias gcob='git checkout -b'
+alias gcod='git checkout $(git_develop_branch)'
+alias gcom='git checkout $(git_main_branch)'
 alias gcp='git cherry-pick'
 alias gcpa='git cherry-pick --abort'
 alias gcpc='git cherry-pick --continue'
@@ -150,7 +150,9 @@ alias gcasm='git commit --all --signoff --message'
 alias gcs='git commit --gpg-sign'
 alias gcss='git commit --gpg-sign --signoff'
 alias gcssm='git commit --gpg-sign --signoff --message'
-alias gcmsg='git commit --message'
+function gcm() {
+  git commit --message "$*"
+}
 alias gcsm='git commit --signoff --message'
 alias gc='git commit --verbose'
 alias gca='git commit --verbose --all'
@@ -220,7 +222,7 @@ alias gmum='git merge upstream/$(git_main_branch)'
 alias gmtl='git mergetool --no-prompt'
 alias gmtlvim='git mergetool --no-prompt --tool=vimdiff'
 alias gl='git pull'
-alias gpr='git pull --rebase'
+# alias gpr='git pull --rebase'
 alias gup='git pull --rebase'
 alias gupa='git pull --rebase --autostash'
 alias gupav='git pull --rebase --autostash --verbose'
@@ -313,7 +315,7 @@ alias grs='git restore'
 alias grss='git restore --source'
 alias grst='git restore --staged'
 alias gunwip='git rev-list --max-count=1 --format="%s" HEAD | grep -q "\--wip--" && git reset HEAD~1'
-alias grev='git revert'
+alias greve='git revert'
 alias grm='git rm'
 alias grmc='git rm --cached'
 alias gcount='git shortlog --summary --numbered'
@@ -358,3 +360,15 @@ alias gk='\gitk --all --branches &!'
 alias gke='\gitk --all $(git log --walk-reflogs --pretty=%h) &!'
 
 unset git_version
+
+# Shachar
+alias grev='git reset --soft HEAD~1'
+function grev!() {
+  git reset HEAD~1
+}
+function grev!!() {
+  git reset --hard HEAD~1
+}
+
+# alias glog="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glogd='glog -p'
