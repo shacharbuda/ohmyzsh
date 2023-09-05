@@ -250,7 +250,7 @@ compdef _git ggl=git-checkout
 
 alias gluc='git pull upstream $(git_current_branch)'
 alias glum='git pull upstream $(git_main_branch)'
-alias gp='git push'
+alias gp='git push || gpsup'
 alias gpd='git push --dry-run'
 
 function ggf() {
